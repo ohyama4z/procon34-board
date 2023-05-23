@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue"
 import { useRouter } from "vue-router"
+import { useBoardStore } from "@/store"
 
 import Board from "@/components/Home/Board.vue"
 
@@ -12,7 +13,11 @@ watch([width, height], () => {
 })
 
 const router = useRouter()
+const boardStore = useBoardStore()
 const goSetting = () => {
+  boardStore.width = width.value
+  boardStore.height = height.value
+  boardStore.initBoards()
   router.push("/setting")
 }
 </script>

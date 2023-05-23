@@ -11,9 +11,9 @@ const props = defineProps<Props>()
 
 <template>
   <div class="board">
-    <div v-for="row in props.height" class="board-row" :key="row">
-      <Square v-for="col in props.width" :key="col">
-        <slot></slot>
+    <div v-for="x in props.height" class="board-row" :key="x">
+      <Square v-for="y in props.width" :key="y">
+        <slot :x="x - 1" :y="y - 1"></slot>
       </Square>
     </div>
   </div>
