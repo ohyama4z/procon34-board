@@ -2,7 +2,7 @@ type LayerBase<T> = T[][]
 
 export enum MapObject {
   None = 0,
-  Lake,
+  Pond,
   Castle,
 }
 

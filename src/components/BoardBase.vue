@@ -6,13 +6,25 @@ type Props = {
   height: number
 }
 
+type Emits = {
+  (e: "clickSquare", x: number, y: number): void
+}
 const props = defineProps<Props>()
+const emit = defineEmits<Emits>()
+
+const clickSquare = (x: number, y: number): void => {
+  emit("clickSquare", x, y)
+}
 </script>
 
 <template>
   <div class="board">
     <div v-for="x in props.height" class="board-row" :key="x">
-      <Square v-for="y in props.width" :key="y">
+      <Square
+        v-for="y in props.width"
+        :key="y"
+        @click-square="() => clickSquare(x - 1, y - 1)"
+      >
         <slot :x="x - 1" :y="y - 1"></slot>
       </Square>
     </div>
